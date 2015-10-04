@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="./stickers/light.png" width="25%"/>
+</div>
+
 # Chernivtsi NodeSchool Chapter [![Join the chat][gitter-badge]][gitter-link]
 
 > NodeSchool chapter for **Chernivtsi, UA**
