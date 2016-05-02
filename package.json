@@ -1,0 +1,22 @@
+{
+  "name": "nodeschool-chernivtsi",
+  "version": "0.0.0",
+  "description": "NodeSchool Chernivtsi Chapter",
+  "author": {
+    "name": "Denys Dovhan",
+    "email": "email@denysdovhan.com",
+    "url": "denysdovhan.com"
+  },
+  "main": "gulpfile.js",
+  "private": true,
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denysdovhan/denysdovhan.github.io"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
