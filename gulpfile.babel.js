@@ -1,0 +1,57 @@
+import gulp from 'gulp';
+import pug from 'gulp-pug';
+import sass from 'gulp-sass';
+import sourcemaps from 'gulp-sourcemaps';
+import del from 'del';
+import moduleImporter from 'sass-module-importer';
+import plumber from 'gulp-plumber';
+import BS from 'browser-sync';
+
+const browserSync = BS.create();
+
+gulp.task('layout', function layout() {
+  return gulp
+    .src('layout/*.pug', { since: gulp.lastRun('layout') })
+    .pipe(plumber())
+    .pipe(pug({ pretty: true }))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('styles', function styles() {
+  return gulp
+    .src('styles/*.scss', { since: gulp.lastRun('styles') })
+    .pipe(sourcemaps.init())
+    .pipe(plumber())
+    .pipe(sass({
+      importer: moduleImporter()
+    }).on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist/styles'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('clean', function clean() {
+  return del('dist');
+});
+
+gulp.task('watch', function watch() {
+  browserSync.init({
+    server: 'dist'
+  });
+  gulp.watch('layout/*.pug', gulp.series('layout'));
+  gulp.watch('styles/*.scss', gulp.series('styles'));
+
+  browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
+});
+
+gulp.task('build', gulp.series(
+  'clean',
+  gulp.parallel('layout', 'styles')
+));
+
+gulp.task('serve', gulp.series(
+  'build',
+  'watch'
+));
+
+gulp.task('default', gulp.series('serve'));
