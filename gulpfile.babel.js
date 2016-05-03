@@ -1,6 +1,9 @@
 import gulp from 'gulp';
 import pug from 'gulp-pug';
 import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import sourcemaps from 'gulp-sourcemaps';
 import del from 'del';
 import moduleImporter from 'sass-module-importer';
@@ -18,6 +21,11 @@ gulp.task('layout', function layout() {
 });
 
 gulp.task('styles', function styles() {
+  const processors = [
+    autoprefixer(),
+    cssnano()
+  ];
+
   return gulp
     .src('styles/*.scss', { since: gulp.lastRun('styles') })
     .pipe(sourcemaps.init())
@@ -25,6 +33,7 @@ gulp.task('styles', function styles() {
     .pipe(sass({
       importer: moduleImporter()
     }).on('error', sass.logError))
+    .pipe(postcss(processors))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/styles'))
     .pipe(browserSync.stream());
