@@ -4,6 +4,7 @@ import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import imagemin from 'gulp-imagemin';
 import sourcemaps from 'gulp-sourcemaps';
 import del from 'del';
 import moduleImporter from 'sass-module-importer';
@@ -39,6 +40,14 @@ gulp.task('styles', function styles() {
     .pipe(browserSync.stream());
 });
 
+gulp.task('images', function images() {
+  return gulp
+    .src('images/**/*.*', { since: gulp.lastRun('images') })
+    .pipe(plumber())
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/images'));
+});
+
 gulp.task('clean', function clean() {
   return del('dist');
 });
@@ -49,13 +58,14 @@ gulp.task('watch', function watch() {
   });
   gulp.watch('layout/*.pug', gulp.series('layout'));
   gulp.watch('styles/*.scss', gulp.series('styles'));
+  gulp.watch('images/**/*.*', gulp.series('images'));
 
   browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
 });
 
 gulp.task('build', gulp.series(
   'clean',
-  gulp.parallel('layout', 'styles')
+  gulp.parallel('layout', 'styles', 'images')
 ));
 
 gulp.task('serve', gulp.series(
