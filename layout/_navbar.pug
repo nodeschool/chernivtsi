@@ -1,0 +1,37 @@
+//-
+//- MAIN NAVBAR
+//- All navigation links go here
+//-
+
+nav.navbar.navbar-inverse.fixed-to-top
+  .container
+    #main-navbar.main-navbar.navbar-collapse.collapse
+      //- Left part of navbar
+      ul.nav.navbar-nav.navbar-left
+        li
+          a(href="#") NodeSchool
+        li
+          a(href="#") GitHub
+        li
+          a(href="#") Gitter
+      //- Right part of navbar
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href="#", title="English") EN
+        li
+          a(href="#", title="Ukrainian") UK
+        li
+          a(href="#", title="Russian") RU
+        li
+          a(href="#", title="Romanian") RO
+    //- Header for mobile devices
+    .navbar-header
+      button(
+        type="button",
+        class="navbar-toggle collapsed",
+        data-toggle="collapse",
+        data-target="#main-navbar",´
+        aria-expanded="false")
+        span(class="icon-bar")
+        span(class="icon-bar")
+        span(class="icon-bar")

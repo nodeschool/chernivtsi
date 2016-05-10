@@ -1,0 +1,67 @@
+//
+// HEADER
+// Styles for header and lead title
+//
+
+.header {
+  background: linear-gradient(
+    $half-black,
+    $half-black
+  ), url('../images/header.jpg');
+  background-attachment: fixed;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &-content {
+    $margin: 100px;
+    color: $white;
+    margin-bottom: $margin + 70px;
+    margin-top: $margin;
+  }
+
+  &-title,
+  &-subtitle {
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &-subtitle {
+    font-size: 4vw;
+    margin-bottom: -1.5vw;
+  }
+
+  &-title {
+    font-size: 10vw;
+    line-height: 1;
+    margin: 0;
+    @media only screen and (max-width: 767px) {
+      font-size: 15vw;
+    }
+  }
+
+  .next-event {
+    margin-top: 16px;
+
+    span {
+      color: fade-in($half-white, .3);
+      line-height: 1.5;
+      margin-left: 10px;
+    }
+
+    @media only screen and (max-width: 425px) {
+      .btn {
+        display: block;
+        width: 100%;
+      }
+
+      span {
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}

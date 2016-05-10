@@ -1,0 +1,27 @@
+//
+// BASE
+// Base page style (html, body, a, etc)
+//
+
+body {
+  font-size: $font-size;
+}
+
+a {
+  color: $primary-dark;
+
+  &:hover {
+    color: darken($primary-dark, 20%);
+  }
+}
+
+h1,
+h2,
+h3 {
+  color: $primary-dark;
+}
+
+section {
+  padding-bottom: $section-padding;
+  padding-top: $section-padding;
+}

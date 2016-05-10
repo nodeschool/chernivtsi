@@ -1,0 +1,26 @@
+//
+// FEATURE
+// Styles for features and about sections
+//
+
+.about {
+  background: $white;
+}
+
+.feature {
+  background: lighten($primary-light, 10%);
+
+  &-item {
+    text-align: center;
+
+    &-icon {
+      color: $primary-dark;
+      font-size: 100px;
+      padding: 20px;
+
+      @media only screen and (max-width: 425px) {
+        font-size: 50px;
+      }
+    }
+  }
+}

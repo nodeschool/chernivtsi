@@ -1,1 +1,16 @@
-@import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+//
+// INDEX
+// This file will be an index.css
+//
+
+// Common
+@import 'variables';
+
+// Base styles
+@import 'base';
+
+// Specific styles
+@import 'buttons';
+@import 'navbar';
+@import 'header';
+@import 'feature';
