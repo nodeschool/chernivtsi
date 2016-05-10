@@ -15,7 +15,7 @@ const browserSync = BS.create();
 
 gulp.task('layout', function layout() {
   return gulp
-    .src('layout/*.pug', { since: gulp.lastRun('layout') })
+    .src(['layout/!(_)*.pug'])
     .pipe(plumber())
     .pipe(pug({ pretty: true }))
     .pipe(gulp.dest('dist'))
@@ -28,7 +28,7 @@ gulp.task('styles', function styles() {
   ];
 
   return gulp
-    .src('styles/*.scss', { since: gulp.lastRun('styles') })
+    .src('styles/!(_)*.scss')
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass({
@@ -56,8 +56,8 @@ gulp.task('watch', function watch() {
   browserSync.init({
     server: 'dist'
   });
-  gulp.watch('layout/*.pug', gulp.series('layout'));
-  gulp.watch('styles/*.scss', gulp.series('styles'));
+  gulp.watch('layout/**/*.pug', gulp.series('layout'));
+  gulp.watch('styles/**/*.scss', gulp.series('styles'));
   gulp.watch('images/**/*.*', gulp.series('images'));
 
   browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
