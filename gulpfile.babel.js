@@ -42,7 +42,7 @@ gulp.task('styles', function styles() {
 
 gulp.task('images', function images() {
   return gulp
-    .src('images/**/*.*', { since: gulp.lastRun('images') })
+    .src('images/**/*.*')
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest('dist/images'));
