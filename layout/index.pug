@@ -6,7 +6,7 @@
 extends _layout
 
 block title
-  title Головна — NodeSchool Chernivtsi
+  title=title
 
 block body
   include _header
@@ -14,107 +14,63 @@ block body
     .container
       .row
         .col-sm-12
-          h1 About NodeSchool
+          h1= about.title
       .row
         .col-sm-6
-          p.lead Це оpen source воркшопи, які навчають веб-розробці.
+          p.lead!= about.lead
         .col-sm-6
-          p Спільнота проводить зустрічі в Чернівцях для обміну досвідом та для допомоги у проходження воркшопів.
+          p= about.text
   section.feature
     .container
       .row
-        .col-sm-4.feature-item
-          span.fa.fa-code.feature-item-icon
-          h3 Learn Coding
-          p.
-            Join us and learn coding with us. You are going to learn the basics
-            of Node.js. It's a plus if you know some JavaScript beforehand,
-            but if not we can help you out.
-        .col-sm-4.feature-item
-          span.fa.fa-rocket.feature-item-icon
-          h3 Self-Guided
-          p.
-            You will go through a set of self-paced challenges. No boring talks.
-            (An occasional interesting talk is possible, though!)
-            All challenges are Open Source and available online on
-            nodeschool.io. This means you can continue learning after the event.
-        .col-sm-4.feature-item
-          span.fa.fa-heart.feature-item-icon
-          h3 For Everyone
-          p.
-            We think coding is awesome and everyone should feel welcome at our
-            event. This includes that we are expecting all participants to be
-            awesome to each other and respect the Code of Conduct.
+        each item in feature
+          .col-sm-4.feature-item
+            span(class="feature-item-icon fa " + item.icon)
+            h3= item.title
+            p!= item.desc
   section.learn
     .container
       .learn-content
-        h1 Learn yourself
-        p.lead.
-          Workshoppers are self guided (you don't need to
-          attend a workshop to do one) and most work offline.
+        h1= learn.title
+        p.lead!= learn.lead
   section.workshopper
     .container
       .row
         .col-sm-12
-          h1 Our workshoppers
-          p.lead.
-            There are a lot of useful workshoppers. Some of those are built in Chernivtsi, for our community.
+          h1= workshopper.title
+          p.lead!= workshopper.lead
       .row
-        .col-sm-6.workshopper-item
-          a(href="http://git.io/learnyoubash")
-            img(src="/images/learnyoubash.png")
-            h2
-              code learnyoubash
-            p.lead.
-              Learn you how to use the terminal and write your the first Bash script.
-        .col-sm-6.workshopper-item
-          a(href="http://git.io/how-to-markdown")
-            img(src="/images/how-to-markdown.png")
-            h2
-              code how-to-markdown
-            p.lead Learn how to start using Markdown — a lightweight markup language with plain text formatting syntax.
+        each item in workshopper.workshoppers
+          .col-sm-6.workshopper-item
+            a(href= item.link)
+              img(src= item.image)
+              h2
+                code= item.title
+              p.lead!= item.desc
   section.mentors
     .container
       .mentors-content
-        h1 Mentors help you to find solutions
-        p.lead.
-          If you have a question, #[a(href="#") feel free to ask]. We glad to help you.
+        h1= mentors.title
+        p.lead!= mentors.lead
   section.team
     .container
       .row
         .col-sm-12
-          h1 Our team
-          p.lead.
-            We are people who really love programming. Wanna became a mentor? Join us!
+          h1= team.title
+          p.lead!= team.lead
       .team-members
-        .team-member-item
-          img(src="http://lorempixel.com/200/200/people")
-          h3 Denys Dovhan
-          p Founder, open-source
-        .team-member-item
-          img(src="http://lorempixel.com/200/200/people")
-          h3 Andriy Komarnitskiy
-          p Front-end developer
-        .team-member-item
-          img(src="http://lorempixel.com/200/200/people")
-          h3 Andriy Kostetskiy
-          p Ful-stack developer
-        .team-member-item
-          img(src="http://lorempixel.com/200/200/people")
-          h3 Denis Zavgorodny
-          p Web-technologist
-        .team-member-item
-          img(src="http://lorempixel.com/200/200/people")
-          h3 Alex Astahov
-          p Java-developer
+        each member in team.members
+          .team-member-item
+            img(src= member.picture)
+            h3= member.name
+            p!= member.desc
   section.join
     .container
       .join-content
-        h1 Join the community!
-        p.lead.
-          It's interesting, exciting and free. And we have stickers and candies ;)
+        h1= join.title
+        p.lead!= join.lead
         a(
           class="btn btn-default btn-primary btn-sign-up",
-          href="#",
-          role="button") Go to school!
+          href= sign_up.href,
+          role="button")= sign_up.title
   include _footer

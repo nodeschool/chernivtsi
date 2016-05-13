@@ -8,24 +8,14 @@ nav.navbar.navbar-inverse.fixed-to-top
     #main-navbar.main-navbar.navbar-collapse.collapse
       //- Left part of navbar
       ul.nav.navbar-nav.navbar-left
-        li
-          a(href="#") NodeSchool
-        li
-          a(href="#") GitHub
-        li
-          a(href="#") Gitter
-        li
-          a(href="#") VK
+        each item in navbar.left
+          li
+            a(href=item.href, title=item.title)= item.title
       //- Right part of navbar
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href="#", title="English") EN
-        li
-          a(href="#", title="Ukrainian") UK
-        li
-          a(href="#", title="Russian") RU
-        li
-          a(href="#", title="Romanian") RO
+        each item in navbar.right
+          li
+            a(href=item.href, title=item.title)= item.title
     //- Header for mobile devices
     .navbar-header
       button(

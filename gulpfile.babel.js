@@ -1,25 +1,62 @@
 import gulp from 'gulp';
+import data from 'gulp-data';
 import pug from 'gulp-pug';
+import rename from 'gulp-rename';
 import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import imagemin from 'gulp-imagemin';
 import sourcemaps from 'gulp-sourcemaps';
+import { readFiles as readDir } from 'node-dir';
+import { readFile } from 'fs';
 import del from 'del';
-import moduleImporter from 'sass-module-importer';
 import plumber from 'gulp-plumber';
 import BS from 'browser-sync';
 
 const browserSync = BS.create();
 
-gulp.task('layout', function layout() {
-  return gulp
-    .src(['layout/!(_)*.pug'])
+// Render a page
+// Returns a promise which render a page base on translation object and path
+const render = (i18n, lang = '/') => new Promise((resolve, reject) =>
+  gulp
+    .src('layout/!(_)*.pug')
     .pipe(plumber())
+    .pipe(data(i18n))
     .pipe(pug({ pretty: true }))
+    .pipe(rename({ dirname: lang, basename: 'index' }))
     .pipe(gulp.dest('dist'))
+      .on('error', reject)
+      .on('end', resolve)
+);
+
+// Render all translations
+gulp.task('translations', function translations() {
+  return new Promise(function(resolve, reject) {
+    let promises = [];
+
+    readDir('translations', (err, content, next) => {
+      if (err) reject(err);
+      const translation = JSON.parse(content);
+      promises.push(
+        render(translation, translation.lang)
+      );
+      next();
+    }, resolve);
+
+    return Promise.all(promises);
+  });
 });
+
+// Render index page based on English trans
+gulp.task('index', function index(cb) {
+  return new Promise(function(resolve, reject) {
+    readFile('translations/en.json', 'utf8', (err, content) => {
+      if (err) reject(err);
+      resolve(render(JSON.parse(content)));
+    })
+  });
+})
 
 gulp.task('styles', function styles() {
   const processors = [
@@ -31,9 +68,7 @@ gulp.task('styles', function styles() {
     .src('styles/!(_)*.scss')
     .pipe(sourcemaps.init())
     .pipe(plumber())
-    .pipe(sass({
-      importer: moduleImporter()
-    }).on('error', sass.logError))
+    .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/styles'))
@@ -52,11 +87,13 @@ gulp.task('clean', function clean() {
   return del('dist');
 });
 
+gulp.task('layout', gulp.parallel('index', 'translations'));
+
 gulp.task('watch', function watch() {
   browserSync.init({
     server: 'dist'
   });
-  gulp.watch('layout/**/*.pug', gulp.series('layout'));
+  gulp.watch(['layout/**/*.pug', 'translations/**/*.json'], gulp.series('layout'));
   gulp.watch('styles/**/*.scss', gulp.series('styles'));
   gulp.watch('images/**/*.*', gulp.series('images'));
 
