@@ -40,4 +40,8 @@
       color: fade-in($text-color, .5);
     }
   }
+
+  span {
+    color: fade-out($text-color, .2);
+  }
 }
