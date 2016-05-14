@@ -8,6 +8,8 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import imagemin from 'gulp-imagemin';
 import sourcemaps from 'gulp-sourcemaps';
+import deploy from 'gulp-gh-pages';
+import moment from 'moment';
 import { readFiles as readDir } from 'node-dir';
 import { readFile } from 'fs';
 import del from 'del';
@@ -119,9 +121,9 @@ gulp.task('build', gulp.series(
   gulp.parallel('layout', 'styles', 'images', 'favicon')
 ));
 
-gulp.task('deploy', gulp.series('build', function deploy() {
+gulp.task('deploy', gulp.series('build', function () {
   return gulp
-    .src('dist/**/*')
+    .src('dist/**/*.*')
     .pipe(deploy({
       branch: 'gh-pages',
       push: true,
