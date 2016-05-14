@@ -119,6 +119,16 @@ gulp.task('build', gulp.series(
   gulp.parallel('layout', 'styles', 'images', 'favicon')
 ));
 
+gulp.task('deploy', gulp.series('build', function deploy() {
+  return gulp
+    .src('dist/**/*')
+    .pipe(deploy({
+      branch: 'gh-pages',
+      push: true,
+      message: `Update ${moment(new Date()).format('lll')}`
+    }))
+}));
+
 gulp.task('serve', gulp.series(
   'build',
   'watch'
