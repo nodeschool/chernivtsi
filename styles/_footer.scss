@@ -1,0 +1,47 @@
+//
+// FOOTER
+// Styles for footer of the site
+//
+
+.footer {
+  $text-color: rgba($secondary-light, .7);
+
+  background: $secondary-dark;
+  color: $text-color;
+  padding: $font-size 0;
+  text-align: center;
+
+  &-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+
+      &:before {
+        color: fade-out($text-color, .2);
+        content: '•';
+        margin-right: 4px;
+      }
+
+      &:first-child {
+        &:before {
+          content: '';
+        }
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: fade-in($text-color, .5);
+    }
+  }
+
+  span {
+    color: fade-out($text-color, .2);
+  }
+}

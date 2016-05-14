@@ -1,0 +1,12 @@
+//-
+//- FOOTER
+//- This is a footer section
+//-
+
+footer.footer
+  .container
+    ul.footer-links
+      each link in footer.links
+        li
+          a(href= link.href)= link.title
+    span!= footer.photo

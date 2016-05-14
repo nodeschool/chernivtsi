@@ -1,0 +1,17 @@
+//-
+//- HEADER
+//- Header partial
+//-
+
+header.header
+  include _navbar
+  .container
+    .header-content
+      h2.header-subtitle= header.subtitle
+      h1.header-title= header.title
+      .next-event
+        a(
+          class="btn btn-default btn-primary btn-sign-up",
+          href= sign_up.href,
+          role="button")= sign_up.title
+        span #{header.next} #{sign_up.date}

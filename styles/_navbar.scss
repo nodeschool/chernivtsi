@@ -1,0 +1,24 @@
+//
+// NAVBAR
+// Styles for navbar
+//
+
+// Navbar should be transparent
+.navbar,
+.main-navbar {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.main-navbar {
+  // Make navbar header darker when it's collapsing
+  &.in + .navbar-header,
+  &.collapsing + .navbar-header {
+    background: $half-black;
+  }
+  // Make navbar transparent on desktops
+  @media only screen and (max-width: 767px) {
+    background: $half-black;
+  }
+}

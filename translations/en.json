@@ -1,0 +1,134 @@
+{
+  "lang": "en",
+  "title": "NodeSchool Chernivtsi",
+  "sign_up": {
+    "title": "Go to school!",
+    "date": "24 May 2016",
+    "href": "#"
+  },
+  "navbar": {
+    "left": [
+      {
+        "title": "NodeSchool",
+        "href": "http://nodeschool.io/"
+      }, {
+        "title": "GitHub",
+        "href": "https://github.com/nodeschool/chernivtsi"
+      }, {
+        "title": "Gitter",
+        "href": "https://gitter.im/nodeschool/chernivtsi"
+      }, {
+        "title": "VK",
+        "href": "https://vk.com/nodeschool_cv"
+      }
+    ],
+    "right": [
+      {
+        "title": "EN",
+        "href": "/en"
+      }
+    ]
+  },
+  "header": {
+    "subtitle": "NodeSchool",
+    "title": "Chernivtsi",
+    "next": "Next event:"
+  },
+  "about": {
+    "title": "About NodeSchool",
+    "lead": "Open source workshops that teach web software skills.",
+    "text": "Our community host events in Chernivtsi for sharing of knowlendge and helping with going through the workshoppers."
+  },
+  "feature": [
+    {
+      "icon": "fa-code",
+      "title": "Learn Coding",
+      "desc": "Join us and learn coding with us. You are going to learn the basics of Node.js. It's a plus if you know some JavaScript beforehand, but if not we can help you out."
+    }, {
+      "icon": "fa-rocket",
+      "title": "Self-Guided",
+      "desc": "You will go through a set of self-paced challenges. No boring talks. (An occasional interesting talk is possible, though!) All challenges are Open Source and available online on nodeschool.io. This means you can continue learning after the event."
+    }, {
+      "icon": "fa-heart",
+      "title": "For Everyone",
+      "desc": "We think coding is awesome and everyone should feel welcome at our event. This includes that we are expecting all participants to be awesome to each other and respect the Code of Conduct."
+    }
+  ],
+  "learn": {
+    "title": "Learn yourself",
+    "lead": "Workshoppers are self guided (you don't need to attend a workshop to do one) and most work offline."
+  },
+  "workshopper": {
+    "title": "Our workshoppers",
+    "lead": "There are a lot of useful workshoppers. Some of those are built in Chernivtsi, for our community.",
+    "workshoppers": [
+      {
+        "image": "/images/learnyoubash.png",
+        "link": "http://git.io/learnyoubash",
+        "title": "learnyoubash",
+        "desc": "Learn you how to use the terminal and write your the first Bash script."
+      }, {
+        "image": "/images/how-to-markdown.png",
+        "link": "http://git.io/how-to-markdown",
+        "title": "how-to-markdown",
+        "desc": "Learn how to start using Markdown — a lightweight markup language with plain text formatting syntax."
+      }
+    ]
+  },
+  "mentors": {
+    "title": "Mentors help you to find solutions",
+    "lead": "If you have a question, <a href=\"https://gitter.im/nodeschool/chernivtsi\">feel free to ask</a>. We glad to help you."
+  },
+  "team": {
+    "title": "Our team",
+    "lead": "We are people who really love programming. Wanna became a mentor? Join us!",
+    "members": [
+      {
+        "picture": "/images/mentors/denysdovhan.jpg",
+        "name": "Denys Dovhan",
+        "desc": "Founder of the chapter"
+      }, {
+        "picture": "/images/mentors/komarnitskyi.jpg",
+        "name": "Andrew Komarnitskyi",
+        "desc": "Front-end developer at ASD Team"
+      }, {
+        "picture": "/images/mentors/kostyandrew.jpg",
+        "name": "Andrew Kostetskyi",
+        "desc": "Full-stack developer at ASD Team"
+      }, {
+        "picture": "/images/mentors/deniszavgorodny.jpg",
+        "name": "Denis Zavgorodny",
+        "desc": "Web-technologist at AlterEGO"
+      }, {
+        "picture": "/images/mentors/alexastakhov.jpg",
+        "name": "Alex Astakhov",
+        "desc": "Software developer at SoftServe"
+      }
+    ]
+  },
+  "join": {
+    "title": "Join the community!",
+    "lead": "It's interesting, exciting and free. And we have stickers and candies ;)"
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "NodeSchool",
+        "href": "http://nodeschool.io/"
+      }, {
+        "title": "GitHub",
+        "href": "https://github.com/nodeschool/chernivtsi"
+      }, {
+        "title": "Gitter",
+        "href": "https://gitter.im/nodeschool/chernivtsi"
+      }, {
+        "title": "VK",
+        "href": "https://vk.com/nodeschool_cv"
+      }, {
+        "title": "Code of Conduct",
+        "href": "https://vk.com/nodeschool_cv"
+      }
+    ],
+    "photo": "Header photo by <a href=\"https://www.facebook.com/jenja.tomynets\">Evgen Tomynets</a>"
+  }
+}

@@ -1,0 +1,34 @@
+//
+// BUTTONS
+// Common styles for buttons
+//
+
+// Bootstrap's primary button
+.btn-primary {
+  background: $primary-dark;
+  border-width: 0;
+  color: $primary-light;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background: darken($primary-dark, 5%);
+    border-width: 0;
+    color: $primary-light;
+  }
+
+  &:active {
+    &:hover {
+      background: $primary-light;
+      border-width: 0;
+      box-shadow: none;
+      color: darken($primary-dark, 5%);
+    }
+  }
+}
+
+// Sign Up button
+.btn-sign-up {
+  padding: 15px 24px;
+}

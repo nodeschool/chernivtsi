@@ -1,0 +1,76 @@
+//-
+//- INDEX
+//- This page will be an index.html
+//-
+
+extends _layout
+
+block title
+  title=title
+
+block body
+  include _header
+  section.about
+    .container
+      .row
+        .col-sm-12
+          h1= about.title
+      .row
+        .col-sm-6
+          p.lead!= about.lead
+        .col-sm-6
+          p= about.text
+  section.feature
+    .container
+      .row
+        each item in feature
+          .col-sm-4.feature-item
+            span(class="feature-item-icon fa " + item.icon)
+            h3= item.title
+            p!= item.desc
+  section.learn
+    .container
+      .learn-content
+        h1= learn.title
+        p.lead!= learn.lead
+  section.workshopper
+    .container
+      .row
+        .col-sm-12
+          h1= workshopper.title
+          p.lead!= workshopper.lead
+      .row
+        each item in workshopper.workshoppers
+          .col-sm-6.workshopper-item
+            a(href= item.link)
+              img(src= item.image)
+              h2
+                code= item.title
+              p.lead!= item.desc
+  section.mentors
+    .container
+      .mentors-content
+        h1= mentors.title
+        p.lead!= mentors.lead
+  section.team
+    .container
+      .row
+        .col-sm-12
+          h1= team.title
+          p.lead!= team.lead
+      .team-members
+        each member in team.members
+          .team-member-item
+            img(src= member.picture)
+            h3= member.name
+            p!= member.desc
+  section.join
+    .container
+      .join-content
+        h1= join.title
+        p.lead!= join.lead
+        a(
+          class="btn btn-default btn-primary btn-sign-up",
+          href= sign_up.href,
+          role="button")= sign_up.title
+  include _footer

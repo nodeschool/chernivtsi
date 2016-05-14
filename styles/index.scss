@@ -1,0 +1,93 @@
+//
+// INDEX
+// This file will be an index.css
+//
+
+// Common
+@import 'variables';
+@import 'mixins';
+
+// Base styles
+@import 'base';
+
+// Specific styles
+@import 'buttons';
+@import 'navbar';
+@import 'header';
+@import 'footer';
+
+.about {
+  background: $white;
+}
+
+.feature {
+  background: lighten($primary-light, 10%);
+
+  &-item {
+    margin: 40px auto;
+    text-align: center;
+
+    &-icon {
+      color: $primary-dark;
+      font-size: 100px;
+      padding: 20px;
+
+      @media only screen and (max-width: 425px) {
+        font-size: 50px;
+      }
+    }
+  }
+}
+
+.learn {
+  @include parallax-background('../images/workshopper.jpg');
+  @include branding-section;
+  background-position: 25%;
+}
+
+.workshopper {
+  &-item {
+    text-align: center;
+
+    img {
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+.mentors {
+  @include parallax-background('../images/test.jpg');
+  @include branding-section;
+  background-position: 25%;
+}
+
+.team {
+  &-members {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  &-member-item {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    text-align: center;
+    width: 200px;
+
+    img {
+      border-radius: 50%;
+      width: 100%;
+    }
+  }
+}
+
+.join {
+  @include parallax-background('../images/join-us.jpg');
+  @include branding-section;
+  background-position: 75%;
+}

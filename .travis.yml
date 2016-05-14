@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- v6
+branches:
+  only: master
+before_script:
+- git config --global user.email "email@denysdovhan.com"
+- git config --global user.name "Travis Builder"
+- git remote rm origin
+- git remote add origin https://denysdovhan:${GH_TOKEN}@github.com/nodeschool/chernivtsi.git
+script:
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy || npm run build'
+env:
+  global:
+    secure: s4AhApB8jFd9g74bQmUbuF2CAri59xa/69LwCD/ORHNTYGSPnnjV8qzEhq7pt5WM3SkuACoNA9+GZRG7XLpTRHn/GpD5FRuOY6hFYLkK7hN9Fhu61LS5m05J1t4rt1IImQJqFv6Pz06uk3QI6N358lmpn2R8N3AKuaIvO6rbik4QtmZJSioKVzRRYoLl5bMitO7FO/2jHfAkPkfOwX+XHx7Y2tJ1ATOuCAmUJPq7N4nM7z6PDBOnD7MtoZ/sGlLcH7t+VEjiP5Ai569flKbWeanpxQrgN7y0/8D59fokNtPGcIkElMPf8mXGHsz16uH/0hLZ6RoOV30TsiAQbqZaZF7KL37pJUwYwCwpZH1MnDWZ2Z0q03mQU8ZN3rP9icZjkjTCq17M7iFoIu8Yg3EANaUkUKRdKfCW6Nyfzxjij91+vUExZK12F/t9JtSoNdP72tfTfHelk1JerFKpxxlUycUxpNun0T6bBCeVBS55CFfkUB69NjPYAfcKELWYjWgVxhY1jDPRMGVDQlcvnRyq0Os9e4LyB1VSH5bzkAoLe4rRfptKrd9ZhDrZDvRbrJxFK6+owQMNFgkFtOgG15y9DRF9NcKs089Bhj4S6FH9icumT4nt0Jv9104h65qqkq5YdGU690foc+1sqYAXXIbZ+0ynehI49o3ZOzf0sj7UD+w=
