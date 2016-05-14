@@ -18,17 +18,18 @@ const browserSync = BS.create();
 
 // Render a page
 // Returns a promise which render a page base on translation object and path
-const render = (i18n, lang = '/') => new Promise((resolve, reject) =>
+const render = (i18n, path) => new Promise((resolve, reject) => {
+  if (!!i18n) reject();
   gulp
     .src('layout/!(_)*.pug')
     .pipe(plumber())
     .pipe(data(i18n))
     .pipe(pug({ pretty: true }))
-    .pipe(rename({ dirname: lang, basename: 'index' }))
+    .pipe(rename({ dirname: (path || i18n.lang), basename: 'index' }))
     .pipe(gulp.dest('dist'))
       .on('error', reject)
-      .on('end', resolve)
-);
+      .on('end', resolve);
+});
 
 // Render all translations
 gulp.task('translations', function translations() {
@@ -37,10 +38,13 @@ gulp.task('translations', function translations() {
 
     readDir('translations', (err, content, next) => {
       if (err) reject(err);
-      const translation = JSON.parse(content);
-      promises.push(
-        render(translation, translation.lang)
-      );
+
+      try {
+        promises.push(render(JSON.parse(content)));
+      } catch (e) {
+        reject(console.error(e));
+      }
+
       next();
     }, resolve);
 
@@ -53,8 +57,14 @@ gulp.task('index', function index(cb) {
   return new Promise(function(resolve, reject) {
     readFile('translations/en.json', 'utf8', (err, content) => {
       if (err) reject(err);
-      resolve(render(JSON.parse(content)));
-    })
+
+      try {
+        resolve(render(JSON.parse(content), '/'));
+      } catch (e) {
+        reject(console.error(e));
+      }
+
+    });
   });
 })
 
