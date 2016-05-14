@@ -93,6 +93,10 @@ gulp.task('images', function images() {
     .pipe(gulp.dest('dist/images'));
 });
 
+gulp.task('favicon', function favicon() {
+  return gulp.src('favicon.ico').pipe(gulp.dest('dist'));
+});
+
 gulp.task('clean', function clean() {
   return del('dist');
 });
@@ -112,7 +116,7 @@ gulp.task('watch', function watch() {
 
 gulp.task('build', gulp.series(
   'clean',
-  gulp.parallel('layout', 'styles', 'images')
+  gulp.parallel('layout', 'styles', 'images', 'favicon')
 ));
 
 gulp.task('serve', gulp.series(
