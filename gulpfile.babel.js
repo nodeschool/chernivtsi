@@ -103,6 +103,16 @@ gulp.task('clean', function clean() {
   return del('dist');
 });
 
+gulp.task('gh-pages', function ghPages() {
+  return gulp
+    .src('dist/**/*.*')
+    .pipe(deploy({
+      branch: 'gh-pages',
+      push: true,
+      message: `Update ${moment(new Date()).format('lll')}`
+    }))
+});
+
 gulp.task('layout', gulp.parallel('index', 'translations'));
 
 gulp.task('watch', function watch() {
@@ -121,15 +131,7 @@ gulp.task('build', gulp.series(
   gulp.parallel('layout', 'styles', 'images', 'favicon')
 ));
 
-gulp.task('deploy', gulp.series('build', function () {
-  return gulp
-    .src('dist/**/*.*')
-    .pipe(deploy({
-      branch: 'gh-pages',
-      push: true,
-      message: `Update ${moment(new Date()).format('lll')}`
-    }))
-}));
+gulp.task('deploy', gulp.series('build', 'gh-pages'));
 
 gulp.task('serve', gulp.series(
   'build',
