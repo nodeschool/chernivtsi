@@ -25,7 +25,7 @@ const render = (i18n, path) => new Promise((resolve, reject) => {
   gulp
     .src('layout/!(_)*.pug')
     .pipe(plumber())
-    .pipe(data(i18n))
+    .pipe(data(Object.assign(i18n, { root: '/' })))
     .pipe(pug({ pretty: true }))
     .pipe(rename({ dirname: (path || i18n.lang), basename: 'index' }))
     .pipe(gulp.dest('dist'))

@@ -63,12 +63,12 @@
     "lead": "There are a lot of useful workshoppers. Some of those are built in Chernivtsi, for our community.",
     "workshoppers": [
       {
-        "image": "/chernivtsi/images/learnyoubash.png",
+        "image": "images/learnyoubash.png",
         "link": "http://git.io/learnyoubash",
         "title": "learnyoubash",
         "desc": "Learn you how to use the terminal and write your the first Bash script."
       }, {
-        "image": "/chernivtsi/images/how-to-markdown.png",
+        "image": "images/how-to-markdown.png",
         "link": "http://git.io/how-to-markdown",
         "title": "how-to-markdown",
         "desc": "Learn how to start using Markdown — a lightweight markup language with plain text formatting syntax."
@@ -84,23 +84,23 @@
     "lead": "We are people who really love programming. Wanna became a mentor? Join us!",
     "members": [
       {
-        "picture": "/chernivtsi/images/mentors/denysdovhan.jpg",
+        "picture": "images/mentors/denysdovhan.jpg",
         "name": "Denys Dovhan",
         "desc": "Founder of the chapter"
       }, {
-        "picture": "/chernivtsi/images/mentors/komarnitskyi.jpg",
+        "picture": "images/mentors/komarnitskyi.jpg",
         "name": "Andrew Komarnitskyi",
         "desc": "Front-end developer at ASD Team"
       }, {
-        "picture": "/chernivtsi/images/mentors/kostyandrew.jpg",
+        "picture": "images/mentors/kostyandrew.jpg",
         "name": "Andrew Kostetskyi",
         "desc": "Full-stack developer at ASD Team"
       }, {
-        "picture": "/chernivtsi/images/mentors/deniszavgorodny.jpg",
+        "picture": "images/mentors/deniszavgorodny.jpg",
         "name": "Denis Zavgorodny",
         "desc": "Web-technologist at AlterEGO"
       }, {
-        "picture": "/chernivtsi/images/mentors/alexastakhov.jpg",
+        "picture": "images/mentors/alexastakhov.jpg",
         "name": "Alex Astakhov",
         "desc": "Software developer at SoftServe"
       }

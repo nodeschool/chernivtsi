@@ -61,7 +61,7 @@ block body
       .team-members
         each member in team.members
           .team-member-item
-            img(src= member.picture)
+            img(src= root + member.picture)
             h3= member.name
             p!= member.desc
   section.join
