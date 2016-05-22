@@ -1,23 +1,24 @@
-import gulp from 'gulp';
-import data from 'gulp-data';
-import pug from 'gulp-pug';
-import rename from 'gulp-rename';
-import sass from 'gulp-sass';
-import postcss from 'gulp-postcss';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-import imagemin from 'gulp-imagemin';
-import sourcemaps from 'gulp-sourcemaps';
-import deploy from 'gulp-gh-pages';
-import moment from 'moment';
-import deepAssign from 'deep-assign';
-import fs from 'fs';
-import del from 'del';
-import plumber from 'gulp-plumber';
-import BS from 'browser-sync';
+const gulp         = require('gulp');
+const data         = require('gulp-data');
+const pug          = require('gulp-pug');
+const rename       = require('gulp-rename');
+const sass         = require('gulp-sass');
+const postcss      = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano      = require('cssnano');
+const imagemin     = require('gulp-imagemin');
+const sourcemaps   = require('gulp-sourcemaps');
+const plumber      = require('gulp-plumber');
+const deploy       = require('gulp-gh-pages');
+const moment       = require('moment');
+const deepAssign   = require('deep-assign');
+const fs           = require('fs');
+const del          = require('del');
+const BS           = require('browser-sync');
 
-const browserSync = BS.create();
+const browserSync  = BS.create();
 
+// Get NODE_ENV constant
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Get root of the site based on currunt environment
