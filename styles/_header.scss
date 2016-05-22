@@ -4,7 +4,7 @@
 //
 
 .header {
-  @include parallax-background('../images/header.jpg');
+  @include parallax-background('../images/header.png');
   background-position: bottom;
 
   &-content {

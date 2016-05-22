@@ -40,9 +40,9 @@
 }
 
 .learn {
-  @include parallax-background('../images/workshopper.jpg');
+  @include parallax-background('../images/workshopper.png');
   @include branding-section;
-  background-position: 25%;
+  background-position: 25% center;
 }
 
 .workshopper {
@@ -61,9 +61,9 @@
 }
 
 .mentors {
-  @include parallax-background('../images/test.jpg');
+  @include parallax-background('../images/test.png');
   @include branding-section;
-  background-position: 25%;
+  background-position: 25% center;
 }
 
 .team {
@@ -87,7 +87,7 @@
 }
 
 .join {
-  @include parallax-background('../images/join-us.jpg');
+  @include parallax-background('../images/join-us.png');
   @include branding-section;
-  background-position: 75%;
+  background-position: 75% center;
 }
