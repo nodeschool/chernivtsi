@@ -74,7 +74,7 @@
   },
   "team": {
     "title": "Our team",
-    "lead": "We are people who really love programming. Wanna became a mentor? Join us!",
+    "lead": "We are people who really love programming. Wanna became a mentor? <a href=\"https://github.com/nodeschool/chernivtsi/issues/6\">Join us!</a>",
     "members": [
       {
         "picture": "images/mentors/denysdovhan.jpg",

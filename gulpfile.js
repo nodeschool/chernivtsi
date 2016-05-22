@@ -1,6 +1,4 @@
 const gulp         = require('gulp');
-const data         = require('gulp-data');
-const pug          = require('gulp-pug');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
 const postcss      = require('gulp-postcss');
@@ -12,7 +10,10 @@ const plumber      = require('gulp-plumber');
 const deploy       = require('gulp-gh-pages');
 const moment       = require('moment');
 const deepAssign   = require('deep-assign');
+const pug          = require('pug');
 const fs           = require('fs');
+const normalize    = require('path').normalize;
+const mkdirp       = require('mkdirp');
 const del          = require('del');
 const BS           = require('browser-sync');
 
@@ -35,26 +36,39 @@ const getJSON = (path) => {
   }
 };
 
-// Render single page based on text object
-const render = (text, path = text.lang) => new Promise((resolve, reject) => {
-  if (!text) reject(); // Reject if text is not present
-  gulp
-    .src('layout/!(_)*.pug')
-    .pipe(plumber())
-    .pipe(data(text))
-    .pipe(pug({ pretty: true }))
-    .pipe(rename({ dirname: path, basename: 'index' }))
-    .pipe(gulp.dest('dist'))
-      .on('error', reject)
-      .on('end', resolve);
+// Render Pug to HTML and handle errors
+const toHTML = (file, locals) => {
+  try {
+    return pug.renderFile(file, locals);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+// Render single page based on locals object
+const render = (locals, path = locals.lang) => new Promise((resolve, reject) => {
+  if (!locals) reject(); // Reject if locals are not present
+
+  const html = toHTML('layout/index.pug', locals);
+  const dist = normalize(`dist/${path}`);
+
+  // Make directory if it isn't present
+  mkdirp(dist, err => {
+    if (err) reject(err);
+
+    fs.writeFile(`${dist}/index.html`, html, err => {
+      if (err) reject(err);
+      resolve();
+    });
+
+  });
 });
 
 // Get array of translation objects from files in specific directory
 const getTranslations = (dirname) => new Promise(function(resolve, reject) {
   fs.readdir(dirname, 'utf8', (err, filenames) => {
-    if (err) {
-      reject(err);
-    }
+    if (err) reject(err);
+
     // Load JSON-object for each file in filenames array
     resolve(filenames.map(f => getJSON(`${dirname}/${f}`)));
   });
@@ -74,11 +88,12 @@ gulp.task('i18n', function i18n() {
 
       return Promise.all(pages);
     });
+  cb();
 });
 
 // Render index page based on data.json content
-gulp.task('index', function index(cb) {
-  const data = getJSON('data.json', cb);
+gulp.task('index', function index() {
+  const data = getJSON('data.json');
 
   return render(
     deepAssign(data, { ROOT }), '/'
