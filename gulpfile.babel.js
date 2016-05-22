@@ -141,7 +141,7 @@ gulp.task('watch', function watch() {
   browserSync.init({
     server: 'dist'
   });
-  gulp.watch(['layout/**/*.pug', 'i18n/**/*.json'], gulp.series('layout'));
+  gulp.watch(['layout/**/*.pug', '*.json'], gulp.series('layout'));
   gulp.watch('styles/**/*.scss', gulp.series('styles'));
   gulp.watch('images/**/*.*', gulp.series('images'));
 
