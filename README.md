@@ -2,7 +2,7 @@
   <img src="./stickers/light.png" width="25%"/>
 </div>
 
-# Chernivtsi NodeSchool Chapter [![Join the chat][gitter-badge]][gitter-link]
+# Chernivtsi NodeSchool Chapter [![Build Status][travis-badge]][travis-link] [![Join the chat][gitter-badge]][gitter-link]
 
 > NodeSchool chapter for **Chernivtsi, UA**
 
@@ -14,5 +14,8 @@ Harassment includes offensive verbal or written comments related to sex, gender 
 
 If a community member engages in harassing behavior, the organizers of **Chernivtsi Nodeschool Chapter** may take any action they deem appropriate, including warning the offender or expulsion from the community. If you are being harassed, notice that someone else is being harassed, or have any concerns, please contact an organizer immediately.
 
+[travis-badge]: https://travis-ci.org/nodeschool/chernivtsi.svg?branch=master
+[travis-link]: https://travis-ci.org/nodeschool/chernivtsi
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-link]: https://gitter.im/nodeschool/chernivtsi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
