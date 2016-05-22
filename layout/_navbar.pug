@@ -8,14 +8,16 @@ nav.navbar.navbar-inverse.fixed-to-top
     #main-navbar.main-navbar.navbar-collapse.collapse
       //- Left part of navbar
       ul.nav.navbar-nav.navbar-left
-        each item in navbar.left
+        each item in navbar
           li
             a(href=item.href, title=item.title)= item.title
       //- Right part of navbar
       ul.nav.navbar-nav.navbar-right
-        each item in navbar.right
+        li
+          a(href= ROOT, title='EN') EN
+        each item in translations
           li
-            a(href=item.href, title=item.title)= item.title
+            a(href= ROOT + item, title=item.toUpperCase())= item.toUpperCase()
     //- Header for mobile devices
     .navbar-header
       button(

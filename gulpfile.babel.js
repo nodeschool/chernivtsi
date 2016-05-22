@@ -10,66 +10,81 @@ import imagemin from 'gulp-imagemin';
 import sourcemaps from 'gulp-sourcemaps';
 import deploy from 'gulp-gh-pages';
 import moment from 'moment';
-import { readFiles as readDir } from 'node-dir';
-import { readFile } from 'fs';
+import deepAssign from 'deep-assign';
+import fs from 'fs';
 import del from 'del';
 import plumber from 'gulp-plumber';
 import BS from 'browser-sync';
 
 const browserSync = BS.create();
 
-// Render a page
-// Returns a promise which render a page base on translation object and path
-const render = (i18n, path) => new Promise((resolve, reject) => {
-  if (!!i18n) reject();
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Get root of the site based on currunt environment
+const ROOT = NODE_ENV === 'production'
+           ? '/chernivtsi/'
+           : '/';
+
+// Get content of JSON-file and handle errors
+const getJSON = (path) => {
+  try {
+    return JSON.parse(fs.readFileSync(path, 'utf8'));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+// Render single page based on text object
+const render = (text, path = text.lang) => new Promise((resolve, reject) => {
+  if (!text) reject(); // Reject if text is not present
   gulp
     .src('layout/!(_)*.pug')
     .pipe(plumber())
-    .pipe(data(Object.assign(i18n, { root: '/' })))
+    .pipe(data(text))
     .pipe(pug({ pretty: true }))
-    .pipe(rename({ dirname: (path || i18n.lang), basename: 'index' }))
+    .pipe(rename({ dirname: path, basename: 'index' }))
     .pipe(gulp.dest('dist'))
       .on('error', reject)
       .on('end', resolve);
 });
 
-// Render all translations
-gulp.task('translations', function translations() {
-  return new Promise(function(resolve, reject) {
-    let promises = [];
-
-    readDir('translations', (err, content, next) => {
-      if (err) reject(err);
-
-      try {
-        promises.push(render(JSON.parse(content)));
-      } catch (e) {
-        reject(console.error(e));
-      }
-
-      next();
-    }, resolve);
-
-    return Promise.all(promises);
+// Get array of translation objects from files in specific directory
+const getTranslations = (dirname) => new Promise(function(resolve, reject) {
+  fs.readdir(dirname, 'utf8', (err, filenames) => {
+    if (err) {
+      reject(err);
+    }
+    // Load JSON-object for each file in filenames array
+    resolve(filenames.map(f => getJSON(`${dirname}/${f}`)));
   });
 });
 
-// Render index page based on English trans
-gulp.task('index', function index(cb) {
-  return new Promise(function(resolve, reject) {
-    readFile('translations/en.json', 'utf8', (err, content) => {
-      if (err) reject(err);
+// Get basic data from data.json, assign translation with basic data,
+// and render page for every translation
+gulp.task('i18n', function i18n() {
+  const data = getJSON('data.json');
 
-      try {
-        resolve(render(JSON.parse(content), '/'));
-      } catch (e) {
-        reject(console.error(e));
-      }
+  // Return a promise of array of promises
+  return getTranslations('i18n')
+    .then(langs => {
+      const pages = langs.map(lang => render(
+        deepAssign(data, lang, { ROOT })
+      ));
 
+      return Promise.all(pages);
     });
-  });
+});
+
+// Render index page based on data.json content
+gulp.task('index', function index(cb) {
+  const data = getJSON('data.json', cb);
+
+  return render(
+    deepAssign(data, { ROOT }), '/'
+  );
 })
 
+// Process all styles through SASS, Autoprefixer and CSSNano
 gulp.task('styles', function styles() {
   const processors = [
     autoprefixer(),
@@ -87,6 +102,7 @@ gulp.task('styles', function styles() {
     .pipe(browserSync.stream());
 });
 
+// Compress images and put them in dist folder
 gulp.task('images', function images() {
   return gulp
     .src('images/**/*.*')
@@ -95,14 +111,17 @@ gulp.task('images', function images() {
     .pipe(gulp.dest('dist/images'));
 });
 
+// Copy favicon in dist folder
 gulp.task('favicon', function favicon() {
   return gulp.src('favicon.ico').pipe(gulp.dest('dist'));
 });
 
+// Clead dist folder
 gulp.task('clean', function clean() {
   return del('dist');
 });
 
+// Push the build to the remote gh-pages
 gulp.task('gh-pages', function ghPages() {
   return gulp
     .src('dist/**/*.*')
@@ -113,29 +132,35 @@ gulp.task('gh-pages', function ghPages() {
     }))
 });
 
-gulp.task('layout', gulp.parallel('index', 'translations'));
+// Render layout (alias for index and i18n)
+gulp.task('layout', gulp.parallel('index', 'i18n'));
 
+// Watch changes in sources, build them and reload browser
 gulp.task('watch', function watch() {
   browserSync.init({
     server: 'dist'
   });
-  gulp.watch(['layout/**/*.pug', 'translations/**/*.json'], gulp.series('layout'));
+  gulp.watch(['layout/**/*.pug', 'i18n/**/*.json'], gulp.series('layout'));
   gulp.watch('styles/**/*.scss', gulp.series('styles'));
   gulp.watch('images/**/*.*', gulp.series('images'));
 
   browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
 });
 
+// Build everything
 gulp.task('build', gulp.series(
   'clean',
   gulp.parallel('layout', 'styles', 'images', 'favicon')
 ));
 
+// Deploy dist on gh-pages (build and push)
 gulp.task('deploy', gulp.series('build', 'gh-pages'));
 
+// Build and watch changes
 gulp.task('serve', gulp.series(
   'build',
   'watch'
 ));
 
+// Default task (alias for sever)
 gulp.task('default', gulp.series('serve'));

@@ -43,7 +43,7 @@ block body
         each item in workshopper.workshoppers
           .col-sm-6.workshopper-item
             a(href= item.link)
-              img(src= item.image)
+              img(src= ROOT + item.image)
               h2
                 code= item.title
               p.lead!= item.desc
@@ -61,7 +61,7 @@ block body
       .team-members
         each member in team.members
           .team-member-item
-            img(src= root + member.picture)
+            img(src= ROOT + member.picture)
             h3= member.name
             p!= member.desc
   section.join

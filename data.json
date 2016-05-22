@@ -1,34 +1,27 @@
 {
   "lang": "en",
+  "translations": [
+    "uk"
+  ],
   "title": "NodeSchool Chernivtsi",
   "sign_up": {
     "title": "Go to school!",
-    "date": "24 May 2016",
+    "date": "is planning…",
     "href": "#"
   },
-  "navbar": {
-    "left": [
-      {
-        "title": "NodeSchool",
-        "href": "http://nodeschool.io/"
-      }, {
-        "title": "GitHub",
-        "href": "https://github.com/nodeschool/chernivtsi"
-      }, {
-        "title": "Gitter",
-        "href": "https://gitter.im/nodeschool/chernivtsi"
-      }, {
-        "title": "VK",
-        "href": "https://vk.com/nodeschool_cv"
-      }
-    ],
-    "right": [
-      {
-        "title": "EN",
-        "href": "/chernivtsi/en"
-      }
-    ]
-  },
+  "navbar": [{
+      "title": "NodeSchool",
+      "href": "http://nodeschool.io/"
+    }, {
+      "title": "GitHub",
+      "href": "https://github.com/nodeschool/chernivtsi"
+    }, {
+      "title": "Gitter",
+      "href": "https://gitter.im/nodeschool/chernivtsi"
+    }, {
+      "title": "VK",
+      "href": "https://vk.com/nodeschool_cv"
+  }],
   "header": {
     "subtitle": "NodeSchool",
     "title": "Chernivtsi",
@@ -86,7 +79,7 @@
       {
         "picture": "images/mentors/denysdovhan.jpg",
         "name": "Denys Dovhan",
-        "desc": "Founder of the chapter"
+        "desc": "Founder of the chapter, open developer"
       }, {
         "picture": "images/mentors/komarnitskyi.jpg",
         "name": "Andrew Komarnitskyi",
