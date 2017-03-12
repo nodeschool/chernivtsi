@@ -95,7 +95,11 @@
       }, {
         "picture": "images/mentors/serhiyboreyko.jpg",
         "name": "Serhiy Boreyko",
-        "desc": "Front-end developer"
+        "desc": "Front-end developer at ASD Team"
+      }, {
+        "picture": "images/mentors/maxharena.jpg",
+        "name": "Max Harena",
+        "desc": "Full-stack developer"
       }
     ]
   },
