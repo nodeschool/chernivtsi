@@ -19,14 +19,15 @@
     li {
       display: inline;
 
-      &:before {
+      &::before {
         color: fade-out($text-color, .2);
         content: '•';
+        margin-left: 4px;
         margin-right: 4px;
       }
 
       &:first-child {
-        &:before {
+        &::before {
           content: '';
         }
       }

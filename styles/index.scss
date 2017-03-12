@@ -75,12 +75,15 @@
 
   &-member-item {
     margin-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
+    min-width: 200px;
+    padding: 20px;
     text-align: center;
-    width: 200px;
+    width: 30%;
 
     img {
       border-radius: 50%;
+      max-width: 200px;
       width: 100%;
     }
   }
