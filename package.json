@@ -4,7 +4,7 @@
   "description": "NodeSchool Chernivtsi Chapter",
   "author": {
     "name": "Denys Dovhan",
-    "email": "email@denysdovhan.com",
+    "email": "denysdovhan@gmail.com",
     "url": "denysdovhan.com"
   },
   "main": "gulpfile.babel.js",

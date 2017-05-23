@@ -4,7 +4,7 @@ node_js:
 branches:
   only: master
 before_script:
-- git config --global user.email "email@denysdovhan.com"
+- git config --global user.email "denysdovhan@gmail.com"
 - git config --global user.name "Travis Builder"
 - git remote rm origin
 - git remote add origin https://denysdovhan:${GH_TOKEN}@github.com/nodeschool/chernivtsi.git
