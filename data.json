@@ -61,6 +61,11 @@
         "title": "learnyoubash",
         "desc": "Learn you how to use the terminal and write your the first Bash script."
       }, {
+        "image": "images/learnyouhtml.png",
+        "link": "https://github.com/denysdovhan/learnyouhtml",
+        "title": "learnyouhtml",
+        "desc": "Learn you how to create your first web page."
+      }, {
         "image": "images/how-to-markdown.png",
         "link": "http://git.io/how-to-markdown",
         "title": "how-to-markdown",
