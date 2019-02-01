@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/denysdovhan/denysdovhan.github.io"
+    "url": "https://github.com/nodeschool/chernivtsi"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
