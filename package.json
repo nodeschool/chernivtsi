@@ -2,6 +2,7 @@
   "name": "nodeschool-chernivtsi",
   "version": "0.0.0",
   "description": "NodeSchool Chernivtsi Chapter",
+  "private": true,
   "author": {
     "name": "Denys Dovhan",
     "email": "denysdovhan@gmail.com",
